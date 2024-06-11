@@ -8,5 +8,5 @@ COPY . ./
 COPY go.mod go.sum ./
 RUN go mod tidy
 RUN go build -o /main
-RUN chmod +x /start.sh
+RUN chmod +x ./start.sh
 CMD [ "./start.sh" ]
