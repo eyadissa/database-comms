@@ -31,7 +31,7 @@ func main() {
 
 	//defining the network interface to connect to the database based on post0t.go
 	post05.Hostname = "postgres"
-	post05.Port = 5432
+	post05.Port = 8080
 	post05.Username = "postgres"
 	post05.Password = "happy"
 	post05.Database = "msds"
