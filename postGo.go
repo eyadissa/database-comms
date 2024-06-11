@@ -15,7 +15,7 @@ func main() {
 	args := os.Args
 	fmt.Printf("num args: %d \n", len(args))
 	var t post05.CourseData
-	if len(args) > 1 {
+	if len(args) < 1 { //flipped to always else for GCP deployment
 
 		t = post05.CourseData{ //defines the new user based on the post05 struct
 			Cid:    args[1],
