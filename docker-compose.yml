@@ -3,17 +3,17 @@ version: '3'
 services:
   postgres:
     image: postgres:14
-    container_name: postgres
+    container_name: postgres2
     environment:
       - POSTGRES_USER=postgres
-      - POSTGRES_PASSWORD=root
-      - POSTGRES_DB=master
-    volumes:
-      - ./postgres:/var/lib/postgresql/data/
+      - POSTGRES_PASSWORD=happy
+      - POSTGRES_DB=msds
     networks:
       - psql
     ports:
       - "5433:5432"
+    volumes:
+      - ./init.sql:/docker-entrypoint-initdb.d/init.sql
 
   goapp:
     # go app
@@ -21,12 +21,11 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
-    ports:
-      - "2345:2345"
     restart: unless-stopped
-
-volumes:
-  postgres:
+    depends_on:
+      - postgres
+    networks:
+      - psql
 
 networks:
   psql:
