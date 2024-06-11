@@ -29,12 +29,21 @@ func main() {
 			PreReq: "MSDS 410"}
 	}
 
+	/* for containerized postgres
 	//defining the network interface to connect to the database based on post0t.go
 	post05.Hostname = "postgres"
 	post05.Port = 8080
 	post05.Username = "postgres"
 	post05.Password = "happy"
 	post05.Database = "msds"
+	*/
+
+	// for cloud sql on GCP
+	post05.Hostname = "/cloudsql/postgres"
+	//os.Getenv("CLOUD_SQL_CONNECTION_NAME"))
+	post05.Port = 5432
+	post05.Username = "postgres"
+	post05.Password = "pass"
 
 	//list the users in the database
 	data, err := post05.ListUsers()
