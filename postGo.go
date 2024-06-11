@@ -39,12 +39,12 @@ func main() {
 	*/
 
 	// for cloud sql on GCP
-	post05.Hostname = "/cloudsql/postgres"
+	post05.Hostname = "/cloudsql/mydb"
 	//os.Getenv("CLOUD_SQL_CONNECTION_NAME"))
 	post05.Port = 5432
 	post05.Username = "postgres"
 	post05.Password = "pass"
-
+	post05.Database = "postgres"
 	//list the users in the database
 	data, err := post05.ListUsers()
 	if err != nil {
