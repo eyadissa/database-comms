@@ -39,7 +39,7 @@ func main() {
 	*/
 
 	// for cloud sql on GCP
-	post05.Hostname = "127.0.0.1"
+	post05.Hostname = "10.99.144.3"
 	//os.Getenv("CLOUD_SQL_CONNECTION_NAME"))
 	post05.Port = 3306
 	post05.Username = "postgres"
