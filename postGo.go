@@ -2,7 +2,9 @@ package main
 
 import (
 	"fmt"
+	"log"
 	"main.go/post05"
+	"net/http"
 	"os"
 )
 
@@ -77,4 +79,23 @@ func main() {
 	if err != nil {
 		fmt.Println(err)
 	}
+
+	// now print users to http requests
+	port := os.Getenv("PORT")
+	if port == "" {
+		port = "8080"
+	}
+	http.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
+		users, err := post05.ListUsers()
+		if err != nil {
+			http.Error(w, "Error listing users", http.StatusInternalServerError)
+			return
+		}
+		for _, user := range users {
+			fmt.Fprintf(w, "Class: %d, %s, %s, %s \n", user.ID, user.Cid, user.Name, user.PreReq)
+		}
+	})
+
+	log.Printf("Listening on port %s", port)
+	log.Fatal(http.ListenAndServe(":"+port, nil))
 }
