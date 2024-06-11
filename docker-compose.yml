@@ -11,7 +11,7 @@ services:
     networks:
       - psql
     ports:
-      - "5433:5432"
+      - "8080:8080"
     volumes:
       - ./init.sql:/docker-entrypoint-initdb.d/init.sql
 
@@ -28,8 +28,6 @@ services:
       - psql
     ports:
       - "8080:8080"  # Map host port 8080 to container port 8080
-    environment:
-      - PORT=8080  # Ensure the environment variable is set
 
 networks:
   psql:
